@@ -5,13 +5,9 @@ services:
     build:
       context: .
       dockerfile: dockerfile.dwh
-    volumes:
-      #read-only bind mount # vänster om : är lokala datorn. Höger om : är i containern. :ro betyder read only, så containern kan inte skriva tillbaka nåt din lokala datorn
-      - C:/Users/alexa/.dbt/profiles.yml:/pipeline/profiles.yml:ro 
-      #blind mount # i detta fall så kan containern skriva tillbaka till lokala datorn
-      - ./data_warehouse:/data_warehouse 
     ports:
       - "3000:3000"
+    image: crtestalexh.azurecr.io/hr-pipeline:latest
 
   dashboard:
     build:
